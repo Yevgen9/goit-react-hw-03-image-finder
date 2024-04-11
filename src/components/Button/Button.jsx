@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Button = () => {
+const Button = ({ onButtonClick }) => {
   return (
-    <div>
-      <button type="button">Load more</button>
-    </div>
+    <button type="button" onClick={onButtonClick}>
+      Load more
+    </button>
   );
 };
 

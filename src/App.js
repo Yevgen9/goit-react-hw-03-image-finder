@@ -12,13 +12,20 @@ export default class App extends Component {
     arrayOfImages: [],
     page: 1,
     showButton: false,
-    showLoader: true,
+    showLoader: false,
+    showModal: true,
   };
 
   onSubmitForm = query => {
-    this.setState({ arrayOfImages: [] });
+    this.setState({ query: '', arrayOfImages: [], page: 1 });
     this.setState({ query: query });
     this.fetchAPI(query, 1);
+  };
+
+  onButtonClickLoadMore = query => {
+    // console.log('buttonClick');
+    this.fetchAPI(this.state.query, this.state.page + 1);
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   fetchAPI(query, page) {
@@ -27,6 +34,9 @@ export default class App extends Component {
     let PER_PAGE = '12';
 
     let URL = `${BASE_URL}q=${query}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=${PER_PAGE}`;
+
+    // == show loader ==
+    this.setState({ showLoader: true });
 
     fetch(URL)
       .then(response => response.json())
@@ -56,6 +66,8 @@ export default class App extends Component {
         } else {
           this.setState({ showButton: true });
         }
+
+        this.setState({ showLoader: false });
       })
 
       .catch(error => {
@@ -72,7 +84,9 @@ export default class App extends Component {
         {this.state.arrayOfImages.length > 0 && (
           <ImageGallery images={this.state.arrayOfImages} />
         )}
-        {this.state.showButton && <Button />}
+        {this.state.showButton && (
+          <Button onButtonClick={this.onButtonClickLoadMore} />
+        )}
         {this.state.showLoader && <Loader />}
       </>
     );
