@@ -26,13 +26,13 @@ export default class App extends Component {
       .then(response => response.json())
 
       .then(data => {
-        console.log(data);
-        toast.success(`Found ${data.totalHits} images, Bro!`, {
-          position: 'top-center',
-          autoClose: 1500,
-          closeOnClick: true,
-          theme: 'dark',
-        });
+        // console.log(data);
+        // toast.success(`Found ${data.totalHits} images, Bro!`, {
+        //   position: 'top-center',
+        //   autoClose: 1500,
+        //   closeOnClick: true,
+        //   theme: 'dark',
+        // });
         this.setState(prevState => ({
           arrayOfImages: [...prevState.arrayOfImages, ...data.hits],
         }));
