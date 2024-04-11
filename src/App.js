@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import Searchbar from './components/Searchbar/Searchbar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
+import Button from './components/Button/Button';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default class App extends Component {
   state = {
     query: '',
     arrayOfImages: [],
+    page: 1,
+    showButton: false,
   };
 
   onSubmitForm = query => {
+    this.setState({ arrayOfImages: [] });
     this.setState({ query: query });
     this.fetchAPI(query, 1);
   };
@@ -27,15 +31,29 @@ export default class App extends Component {
 
       .then(data => {
         // console.log(data);
+
         // toast.success(`Found ${data.totalHits} images, Bro!`, {
         //   position: 'top-center',
-        //   autoClose: 1500,
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
         //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
         //   theme: 'dark',
         // });
+
         this.setState(prevState => ({
           arrayOfImages: [...prevState.arrayOfImages, ...data.hits],
         }));
+
+        let totalNumberOfImages = data.totalHits;
+        let alreadyDownLoaded = PER_PAGE * this.state.page;
+        if (totalNumberOfImages > alreadyDownLoaded) {
+          this.setState({ showButton: true });
+        } else {
+          this.setState({ showButton: false });
+        }
       })
 
       .catch(error => {
@@ -47,11 +65,12 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Searchbar onSubmit={this.onSubmitForm} />
         {this.state.arrayOfImages.length > 0 && (
           <ImageGallery images={this.state.arrayOfImages} />
         )}
+        {this.state.showButton && <Button />}
       </>
     );
   }
