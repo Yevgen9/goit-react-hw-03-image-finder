@@ -3,6 +3,7 @@ import Searchbar from './components/Searchbar/Searchbar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 // import { ToastContainer, toast } from 'react-toastify';
 import Button from './components/Button/Button';
+import Loader from './components/Loader/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default class App extends Component {
@@ -11,6 +12,7 @@ export default class App extends Component {
     arrayOfImages: [],
     page: 1,
     showButton: false,
+    showLoader: true,
   };
 
   onSubmitForm = query => {
@@ -52,7 +54,7 @@ export default class App extends Component {
         if (totalNumberOfImages > alreadyDownLoaded) {
           this.setState({ showButton: true });
         } else {
-          this.setState({ showButton: false });
+          this.setState({ showButton: true });
         }
       })
 
@@ -71,6 +73,7 @@ export default class App extends Component {
           <ImageGallery images={this.state.arrayOfImages} />
         )}
         {this.state.showButton && <Button />}
+        {this.state.showLoader && <Loader />}
       </>
     );
   }
