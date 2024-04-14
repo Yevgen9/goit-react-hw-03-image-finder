@@ -4,6 +4,7 @@ import ImageGallery from './components/ImageGallery/ImageGallery';
 // import { ToastContainer, toast } from 'react-toastify';
 import Button from './components/Button/Button';
 import Loader from './components/Loader/Loader';
+import Modal from './components/Modal/Modal';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
     page: 1,
     showButton: false,
     showLoader: false,
-    showModal: true,
+    showModal: false,
   };
 
   onSubmitForm = query => {
@@ -76,18 +77,30 @@ export default class App extends Component {
       });
   }
 
+  showModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: false });
+  };
+
   render() {
     return (
       <>
         {/* <ToastContainer /> */}
         <Searchbar onSubmit={this.onSubmitForm} />
         {this.state.arrayOfImages.length > 0 && (
-          <ImageGallery images={this.state.arrayOfImages} />
+          <ImageGallery
+            images={this.state.arrayOfImages}
+            onShowModal={this.showModal}
+          />
         )}
         {this.state.showButton && (
           <Button onButtonClick={this.onButtonClickLoadMore} />
         )}
         {this.state.showLoader && <Loader />}
+        {this.state.showModal && <Modal />}
       </>
     );
   }

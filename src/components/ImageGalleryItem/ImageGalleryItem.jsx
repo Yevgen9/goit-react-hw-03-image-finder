@@ -1,16 +1,19 @@
 import React from 'react';
 import s from './ImageGalleryItem.module.scss';
 
-const ImageGalleryItem = ({ image }) => {
-//   console.log('image', image);
+const ImageGalleryItem = ({ image, onShowModal }) => {
+  //   console.log('image', image);
   return (
     <li className={s.galleryItem}>
-      {/* photo: {image.id} */}
-          <img src={image.webformatURL} alt={ image.tags} />
+      <img
+        src={image.webformatURL}
+        alt={image.tags}
+        onClick={onShowModal}
+      />
     </li>
   );
 };
 
-ImageGalleryItem.propTypes = {};
+// ImageGalleryItem.propTypes = {};
 
 export default ImageGalleryItem;

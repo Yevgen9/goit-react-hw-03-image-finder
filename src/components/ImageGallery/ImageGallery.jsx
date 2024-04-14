@@ -2,13 +2,17 @@ import React from 'react';
 import s from './ImageGallery.module.scss';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onShowModal }) => {
   //   console.log('images', images);
   return (
     <>
       <ul className={s.gallery}>
         {images.map(image => (
-          <ImageGalleryItem key={image.id} image={image} />
+          <ImageGalleryItem
+            key={image.id}
+            image={image}
+            onShowModal={onShowModal}
+          />
         ))}
       </ul>
     </>
