@@ -107,7 +107,7 @@ export default class App extends Component {
         {this.state.showLoader && <Loader />}
         {this.state.showModal && (
           <Modal
-            largeImageURL={this.largeImageURL}
+            largeImageURL={this.state.largeImageURL}
             onHideModal={this.hideModal}
           />
         )}

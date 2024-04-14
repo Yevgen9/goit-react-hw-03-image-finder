@@ -17,7 +17,7 @@ const Modal = ({ largeImageURL, onHideModal }) => {
   return (
     <div className={s.overlay} onClick={onHideModal}>
       <div className={s.modal}>
-        <img src={largeImageURL} alt="Large" />
+        <img className={s.modalImage} src={largeImageURL} alt="Large" />
       </div>
     </div>
   );
