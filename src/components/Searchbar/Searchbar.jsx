@@ -38,13 +38,13 @@ export default class Searchbar extends Component {
     return (
       <header className={s.searchbar}>
         <ToastContainer />
-        <form className="form" onSubmit={this.handlSubmitForm}>
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
+        <form className={s.form} onSubmit={this.handlSubmitForm}>
+          <button type="submit" className={s.SearchFormButton}>
+            <span className={s.buttonLabel}>Search</span>
           </button>
 
           <input
-            className="input"
+            className={s.searchFormInput}
             type="text"
             placeholder="Search images and photos"
             autoComplete="off"

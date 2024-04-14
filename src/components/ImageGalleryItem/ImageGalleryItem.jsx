@@ -6,6 +6,7 @@ const ImageGalleryItem = ({ image, onShowModal }) => {
   return (
     <li className={s.galleryItem}>
       <img
+        className={s.imageItem }
         src={image.webformatURL}
         alt={image.tags}
         onClick={onShowModal}

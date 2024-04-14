@@ -10,6 +10,7 @@ const ImageGallery = ({ images, onShowModal }) => {
         <ImageGalleryItem
           key={image.id}
           image={image}
+          width="1000"
           onShowModal={() => onShowModal(image.largeImageURL)}
         />
       ))}

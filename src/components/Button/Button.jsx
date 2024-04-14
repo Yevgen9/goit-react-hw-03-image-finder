@@ -1,10 +1,17 @@
 import React from 'react';
+import s from './Button.module.scss'
 
 const Button = ({ onButtonClick }) => {
   return (
-    <button type="button" onClick={onButtonClick}>
-      Load more
-    </button>
+    <div className={s.button}>
+      <button
+        className={s.loadMoreButton}
+        type="button"
+        onClick={onButtonClick}
+      >
+        Load more
+      </button>
+    </div>
   );
 };
 
