@@ -5,17 +5,15 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ images, onShowModal }) => {
   //   console.log('images', images);
   return (
-    <>
-      <ul className={s.gallery}>
-        {images.map(image => (
-          <ImageGalleryItem
-            key={image.id}
-            image={image}
-            onShowModal={onShowModal}
-          />
-        ))}
-      </ul>
-    </>
+    <ul className={s.gallery}>
+      {images.map(image => (
+        <ImageGalleryItem
+          key={image.id}
+          image={image}
+          onShowModal={() => onShowModal(image.largeImageURL)}
+        />
+      ))}
+    </ul>
   );
 };
 

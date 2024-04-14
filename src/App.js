@@ -15,6 +15,7 @@ export default class App extends Component {
     showButton: false,
     showLoader: false,
     showModal: false,
+    largeImageURL: '',
   };
 
   onSubmitForm = query => {
@@ -77,8 +78,12 @@ export default class App extends Component {
       });
   }
 
-  showModal = () => {
-    this.setState({ showModal: true });
+  // showModal = () => {
+  //   this.setState({ showModal: true });
+  // };
+
+  showModal = largeImageURL => {
+    this.setState({ showModal: true, largeImageURL });
   };
 
   hideModal = () => {
@@ -100,7 +105,12 @@ export default class App extends Component {
           <Button onButtonClick={this.onButtonClickLoadMore} />
         )}
         {this.state.showLoader && <Loader />}
-        {this.state.showModal && <Modal />}
+        {this.state.showModal && (
+          <Modal
+            largeImageURL={this.largeImageURL}
+            onHideModal={this.hideModal}
+          />
+        )}
       </>
     );
   }

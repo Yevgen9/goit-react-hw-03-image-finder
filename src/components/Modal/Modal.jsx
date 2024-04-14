@@ -1,13 +1,23 @@
 import s from './Modal.module.scss';
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+// import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
-const Modal = () => {
+// const Modal = () => {
+//   return (
+//     <div className={s.overlay}>
+//       <div className={s.modal}>
+//         Modal Content
+//         {/* <img src="" alt="" /> */}
+//         <ImageGalleryItem />
+//       </div>
+//     </div>
+//   );
+// };
+
+const Modal = ({ largeImageURL, onHideModal }) => {
   return (
-    <div className={s.overlay}>
+    <div className={s.overlay} onClick={onHideModal}>
       <div className={s.modal}>
-        Modal Content
-        {/* <img src="" alt="" /> */}
-        <ImageGalleryItem />
+        <img src={largeImageURL} alt="Large" />
       </div>
     </div>
   );
